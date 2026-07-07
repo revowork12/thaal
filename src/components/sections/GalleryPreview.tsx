@@ -93,15 +93,15 @@ export default function GalleryPreview() {
                     variants={cellVariants}
                     onClick={() => openLightbox(globalIndex)}
                   >
-                    <div className="aspect-[9/16] lg:aspect-auto lg:h-[32rem] w-full">
+                    <div className="aspect-[9/16] lg:aspect-auto lg:h-[32rem] w-full overflow-hidden">
                       <img
                         src={cell.src}
                         alt={cell.alt}
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.35]"
                         loading="lazy"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-all duration-500 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
                       <span className="text-white/0 group-hover:text-white/90 text-sm font-medium tracking-wide transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                         View Photo
                       </span>
@@ -145,9 +145,9 @@ export default function GalleryPreview() {
             <motion.div
               key={currentIndex}
               className="text-center max-w-[90vw] max-h-[85vh]"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, scale: 0.5, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
               <img

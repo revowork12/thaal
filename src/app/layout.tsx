@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`} style={{ overflowX: "hidden" }}>
       <body className="font-body antialiased">
         <Navbar />
         <main>{children}</main>

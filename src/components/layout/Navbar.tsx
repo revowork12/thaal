@@ -93,15 +93,45 @@ export default function Navbar() {
               </Button>
             </div>
 
-            <button
-              className={`lg:hidden p-2 transition-colors ${
-                scrolled ? "text-charcoal" : "text-white"
-              }`}
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            <div className="flex items-center gap-2">
+              <a
+                href="https://www.facebook.com/share/185qnMtLyk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${
+                  scrolled
+                    ? "bg-primary border-primary text-white hover:bg-primary hover:brightness-110"
+                    : "bg-primary/85 border-primary/85 text-white hover:bg-primary"
+                }`}
+                aria-label="Facebook"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                <span className="hidden sm:inline">Facebook</span>
+              </a>
+              <a
+                href="https://www.instagram.com/thaal_caters/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${
+                  scrolled
+                    ? "bg-primary border-primary text-white hover:bg-primary hover:brightness-110"
+                    : "bg-primary/85 border-primary/85 text-white hover:bg-primary"
+                }`}
+                aria-label="Instagram"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <span className="hidden sm:inline">Instagram</span>
+              </a>
+              <button
+                className={`p-2 transition-colors ${
+                  scrolled ? "text-charcoal" : "text-white"
+                }`}
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
@@ -136,7 +166,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="mt-4"
+                className="mt-4 flex flex-col items-center gap-4"
               >
                 <Button
                   variant="primary"
@@ -145,6 +175,26 @@ export default function Navbar() {
                 >
                   Get Free Quote
                 </Button>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://www.facebook.com/share/185qnMtLyk/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-charcoal hover:text-gold transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    <span className="text-sm font-medium">Facebook</span>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/thaal_caters/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-charcoal hover:text-gold transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    <span className="text-sm font-medium">Instagram</span>
+                  </a>
+                </div>
               </motion.div>
             </nav>
           </motion.div>
