@@ -7,12 +7,17 @@ export default function Hero() {
   return (
     <section className="relative h-dvh min-h-[600px] flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80"
-          alt="Premium catering setup"
-          className="w-full h-full object-cover scale-[1.03]"
-          style={{ filter: "brightness(0.6)" }}
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/hero-bg-poster.jpg"
+          className="w-full h-full object-cover"
+        >
+          <source src="/images/hero-bg.webm" type="video/webm" />
+          <source src="/images/hero-bg.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
       </div>
 
