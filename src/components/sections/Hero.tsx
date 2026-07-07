@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[600px] max-h-[900px] flex items-center overflow-hidden">
+    <section className="relative h-dvh min-h-[600px] flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80"
@@ -62,8 +62,8 @@ export default function Hero() {
             >
               Get Free Quote
             </Button>
-            <Button variant="outline" size="lg" href="/gallery">
-              View Gallery
+            <Button variant="outline" size="lg" href="/services">
+              View Services
             </Button>
           </motion.div>
         </div>
