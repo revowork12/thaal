@@ -1,1 +1,205 @@
-"use client";import { useState, useEffect } from "react";import { motion, AnimatePresence } from "framer-motion";import Link from "next/link";import { Menu, X, Phone } from "lucide-react";import Button from "@/components/ui/Button";const navLinks = [  { label: "Home", href: "/" },  { label: "About", href: "/about" },  { label: "Services", href: "/services" },  { label: "Testimonials", href: "/testimonials" },  { label: "Contact", href: "/contact" },];export default function Navbar() {  const [scrolled, setScrolled] = useState(false);  const [mobileOpen, setMobileOpen] = useState(false);  useEffect(() => {    const handleScroll = () => setScrolled(window.scrollY > 50);    window.addEventListener("scroll", handleScroll, { passive: true });    return () => window.removeEventListener("scroll", handleScroll);  }, []);  useEffect(() => {    if (mobileOpen) {      document.body.style.overflow = "hidden";    } else {      document.body.style.overflow = "";    }    return () => {      document.body.style.overflow = "";    };  }, [mobileOpen]);  return (    <>      <motion.header        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${          scrolled            ? "bg-white/95 backdrop-blur-md shadow-sm"            : "bg-transparent"        }`}        initial={{ y: -100 }}        animate={{ y: 0 }}        transition={{ duration: 0.6, ease: "easeOut" }}      >        <div className="max-w-7xl mx-auto px-6 lg:px-8">          <div className="flex items-center justify-between h-20">            <Link href="/" className="flex items-center gap-2">              <img                src="/images/WhatsApp%20(1).webp"                alt="Thaal Caters"                className="h-14 md:h-16 w-auto transition-all duration-500"              />            </Link>            <nav className="hidden lg:flex items-center gap-8">              {navLinks.map((link) => (                <Link                  key={link.href}                  href={link.href}                  className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-gold ${                    scrolled ? "text-charcoal" : "text-white/90"                  }`}                >                  {link.label}                </Link>              ))}            </nav>            <div className="hidden lg:flex items-center gap-3">              <a                href="tel:7907199231"                className={`p-2 rounded-full transition-colors duration-300 ${                  scrolled                    ? "text-primary hover:bg-beige"                    : "text-white/90 hover:bg-white/10"                }`}                aria-label="Call us"              >                <Phone size={18} />              </a>              <Button                variant={scrolled ? "primary" : "outline"}                size="sm"                href="https://wa.me/917907199231?text=Hello%20Thaal%20Caters%2C%20I%27d%20like%20to%20enquire%20about%20your%20catering%20services."              >                Get Quote              </Button>            </div>            <div className="flex items-center gap-2">              <a                href="https://www.facebook.com/share/185qnMtLyk/"                target="_blank"                rel="noopener noreferrer"                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${                  scrolled                    ? "bg-primary border-primary text-white hover:bg-primary hover:brightness-110"                    : "bg-primary/85 border-primary/85 text-white hover:bg-primary"                }`}                aria-label="Facebook"              >                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>                <span className="hidden sm:inline">Facebook</span>              </a>              <a                href="https://www.instagram.com/thaal_caters/"                target="_blank"                rel="noopener noreferrer"                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${                  scrolled                    ? "bg-primary border-primary text-white hover:bg-primary hover:brightness-110"                    : "bg-primary/85 border-primary/85 text-white hover:bg-primary"                }`}                aria-label="Instagram"              >                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>                <span className="hidden sm:inline">Instagram</span>              </a>              <button                className={`p-2 transition-colors ${                  scrolled ? "text-charcoal" : "text-white"                }`}                onClick={() => setMobileOpen(!mobileOpen)}                aria-label="Toggle menu"              >                {mobileOpen ? <X size={24} /> : <Menu size={24} />}              </button>            </div>          </div>        </div>      </motion.header>      <AnimatePresence>        {mobileOpen && (          <motion.div            className="fixed inset-0 z-40 bg-white lg:hidden"            initial={{ opacity: 0, y: -20 }}            animate={{ opacity: 1, y: 0 }}            exit={{ opacity: 0, y: -20 }}            transition={{ duration: 0.3 }}          >            <nav className="flex flex-col items-center justify-center h-full gap-8">              {navLinks.map((link, i) => (                <motion.div                  key={link.href}                  initial={{ opacity: 0, y: 20 }}                  animate={{ opacity: 1, y: 0 }}                  transition={{ delay: i * 0.1 }}                >                  <Link                    href={link.href}                    className="font-heading text-3xl text-charcoal hover:text-gold transition-colors"                    onClick={() => setMobileOpen(false)}                  >                    {link.label}                  </Link>                </motion.div>              ))}              <motion.div                initial={{ opacity: 0, y: 20 }}                animate={{ opacity: 1, y: 0 }}                transition={{ delay: 0.6 }}                className="mt-4 flex flex-col items-center gap-4"              >                <Button                  variant="primary"                  size="lg"                  href="https://wa.me/917907199231?text=Hello%20Thaal%20Caters%2C%20I%27d%20like%20to%20enquire%20about%20your%20catering%20services."                >                  Get Free Quote                </Button>                <div className="flex items-center gap-4">                  <a                    href="https://www.facebook.com/share/185qnMtLyk/"                    target="_blank"                    rel="noopener noreferrer"                    className="flex items-center gap-2 text-charcoal hover:text-gold transition-colors"                  >                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>                    <span className="text-sm font-medium">Facebook</span>                  </a>                  <a                    href="https://www.instagram.com/thaal_caters/"                    target="_blank"                    rel="noopener noreferrer"                    className="flex items-center gap-2 text-charcoal hover:text-gold transition-colors"                  >                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>                    <span className="text-sm font-medium">Instagram</span>                  </a>                </div>              </motion.div>            </nav>          </motion.div>        )}      </AnimatePresence>    </>  );}
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { Menu, X, Phone } from "lucide-react";
+import Button from "@/components/ui/Button";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "Contact", href: "/contact" },
+];
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  return (
+    <>
+      <motion.header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-white/95 backdrop-blur-md shadow-sm"
+            : "bg-transparent"
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            <Link href="/" className="flex items-center gap-2">
+              <img
+                src="/images/WhatsApp%20(1).webp"
+                alt="Thaal Caters"
+                className="h-14 md:h-16 w-auto transition-all duration-500"
+              />
+            </Link>
+
+            <nav className="hidden lg:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-gold ${
+                    scrolled ? "text-charcoal" : "text-white/90"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="hidden lg:flex items-center gap-3">
+              <a
+                href="tel:7907199231"
+                className={`p-2 rounded-full transition-colors duration-300 ${
+                  scrolled
+                    ? "text-primary hover:bg-beige"
+                    : "text-white/90 hover:bg-white/10"
+                }`}
+                aria-label="Call us"
+              >
+                <Phone size={18} />
+              </a>
+              <Button
+                variant={scrolled ? "primary" : "outline"}
+                size="sm"
+                href="https://wa.me/917907199231?text=Hello%20Thaal%20Caters%2C%20I%27d%20like%20to%20enquire%20about%20your%20catering%20services."
+              >
+                Get Quote
+              </Button>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <a
+                href="https://www.facebook.com/share/185qnMtLyk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${
+                  scrolled
+                    ? "bg-primary border-primary text-white hover:bg-primary hover:brightness-110"
+                    : "bg-primary/85 border-primary/85 text-white hover:bg-primary"
+                }`}
+                aria-label="Facebook"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                <span className="hidden sm:inline">Facebook</span>
+              </a>
+              <a
+                href="https://www.instagram.com/thaal_caters/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${
+                  scrolled
+                    ? "bg-primary border-primary text-white hover:bg-primary hover:brightness-110"
+                    : "bg-primary/85 border-primary/85 text-white hover:bg-primary"
+                }`}
+                aria-label="Instagram"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <span className="hidden sm:inline">Instagram</span>
+              </a>
+              <button
+                className={`p-2 transition-colors ${
+                  scrolled ? "text-charcoal" : "text-white"
+                }`}
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.header>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="fixed inset-0 z-40 bg-white lg:hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <nav className="flex flex-col items-center justify-center h-full gap-8">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Link
+                    href={link.href}
+                    className="font-heading text-3xl text-charcoal hover:text-gold transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-4 flex flex-col items-center gap-4"
+              >
+                <Button
+                  variant="primary"
+                  size="lg"
+                  href="https://wa.me/917907199231?text=Hello%20Thaal%20Caters%2C%20I%27d%20like%20to%20enquire%20about%20your%20catering%20services."
+                >
+                  Get Free Quote
+                </Button>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://www.facebook.com/share/185qnMtLyk/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-charcoal hover:text-gold transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    <span className="text-sm font-medium">Facebook</span>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/thaal_caters/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-charcoal hover:text-gold transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    <span className="text-sm font-medium">Instagram</span>
+                  </a>
+                </div>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
