@@ -9,7 +9,7 @@ const MotionLink = motion(Link);
 interface ButtonProps {
   children: ReactNode;
   variant?: "primary" | "outline" | "ghost" | "gold";
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
   href?: string;
   onClick?: () => void;
   className?: string;
@@ -28,6 +28,7 @@ export default function Button({
   const base = "relative inline-flex items-center justify-center font-medium rounded-full transition-all duration-300 overflow-hidden group";
 
   const sizes: Record<string, string> = {
+    xs: "px-4 py-1.5 text-[11px]",
     sm: "px-5 py-2 text-sm",
     md: "px-7 py-3 text-base",
     lg: "px-10 py-4 text-lg",

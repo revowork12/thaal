@@ -10,7 +10,6 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];
@@ -26,112 +25,99 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pt-3 md:pt-5"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center gap-2">
-              <img
-                src="/images/WhatsApp%20(1).webp"
-                alt="Thaal Caters"
-                className="h-14 md:h-16 w-auto transition-all duration-500"
-              />
-            </Link>
+        <div
+          className={`flex items-center justify-between w-full max-w-6xl px-4 sm:px-6 h-[68px] md:h-[72px] rounded-full border border-white/10 backdrop-blur-[36px] saturate-125 transition-all duration-500 ${
+            scrolled
+              ? "bg-primary/20 backdrop-blur-[44px] shadow-lg shadow-black/10"
+              : "bg-primary/10"
+          }`}
+        >
+          <Link href="/" className="flex items-center gap-2 shrink-0">
+            <img
+              src="/images/WhatsApp%20(1).webp"
+              alt="Thaal Caters"
+              className="h-10 md:h-12 w-auto"
+            />
+          </Link>
 
-            <nav className="hidden lg:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-gold ${
-                    scrolled ? "text-charcoal" : "text-white/90"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="hidden lg:flex items-center gap-3">
-              <a
-                href="tel:7907199231"
-                className={`p-2 rounded-full transition-colors duration-300 ${
-                  scrolled
-                    ? "text-primary hover:bg-beige"
-                    : "text-white/90 hover:bg-white/10"
-                }`}
-                aria-label="Call us"
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-white/70 hover:text-white text-xs font-medium uppercase tracking-[1.2px] transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-[1px] after:bg-gold after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-400"
               >
-                <Phone size={18} />
-              </a>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="hidden lg:flex items-center gap-2">
+            <a
+              href="https://www.facebook.com/share/185qnMtLyk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+              aria-label="Facebook"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a
+              href="https://www.instagram.com/thaal_caters/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+              aria-label="Instagram"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a
+              href="tel:7907199231"
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+              aria-label="Call us"
+            >
+              <Phone size={14} />
+            </a>
+            <div className="ml-2">
               <Button
-                variant={scrolled ? "primary" : "outline"}
-                size="sm"
+                variant="gold"
+                size="xs"
                 href="https://wa.me/917907199231?text=Hello%20Thaal%20Caters%2C%20I%27d%20like%20to%20enquire%20about%20your%20catering%20services."
               >
                 Get Quote
               </Button>
             </div>
+          </div>
 
-            <div className="flex items-center gap-2">
-              <a
-                href="https://www.facebook.com/share/185qnMtLyk/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${
-                  scrolled
-                    ? "bg-primary border-primary text-white hover:bg-primary hover:brightness-110"
-                    : "bg-primary/85 border-primary/85 text-white hover:bg-primary"
-                }`}
-                aria-label="Facebook"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                <span className="hidden sm:inline">Facebook</span>
-              </a>
-              <a
-                href="https://www.instagram.com/thaal_caters/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all duration-300 ${
-                  scrolled
-                    ? "bg-primary border-primary text-white hover:bg-primary hover:brightness-110"
-                    : "bg-primary/85 border-primary/85 text-white hover:bg-primary"
-                }`}
-                aria-label="Instagram"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                <span className="hidden sm:inline">Instagram</span>
-              </a>
-              <button
-                className={`p-2 transition-colors ${
-                  scrolled ? "text-charcoal" : "text-white"
-                }`}
-                onClick={() => setMobileOpen(!mobileOpen)}
-                aria-label="Toggle menu"
-              >
-                {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
+          <div className="flex lg:hidden items-center gap-1.5">
+            <a
+              href="https://www.instagram.com/thaal_caters/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+              aria-label="Instagram"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <button
+              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 transition-colors duration-300"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={16} /> : <Menu size={16} />}
+            </button>
           </div>
         </div>
       </motion.header>
@@ -139,64 +125,65 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-white lg:hidden"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-primary/96 backdrop-blur-[40px] flex flex-col items-center justify-center gap-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <nav className="flex flex-col items-center justify-center h-full gap-8">
+            <nav className="flex flex-col items-center gap-10">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  exit={{ opacity: 0, y: 24 }}
+                  transition={{ delay: i * 0.05, duration: 0.4 }}
                 >
                   <Link
                     href={link.href}
-                    className="font-heading text-3xl text-charcoal hover:text-gold transition-colors"
+                    className="text-white font-heading text-3xl hover:text-gold transition-colors"
                     onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="mt-4 flex flex-col items-center gap-4"
-              >
-                <Button
-                  variant="primary"
-                  size="lg"
-                  href="https://wa.me/917907199231?text=Hello%20Thaal%20Caters%2C%20I%27d%20like%20to%20enquire%20about%20your%20catering%20services."
-                >
-                  Get Free Quote
-                </Button>
-                <div className="flex items-center gap-4">
-                  <a
-                    href="https://www.facebook.com/share/185qnMtLyk/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-charcoal hover:text-gold transition-colors"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    <span className="text-sm font-medium">Facebook</span>
-                  </a>
-                  <a
-                    href="https://www.instagram.com/thaal_caters/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-charcoal hover:text-gold transition-colors"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    <span className="text-sm font-medium">Instagram</span>
-                  </a>
-                </div>
-              </motion.div>
             </nav>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              className="flex flex-col items-center gap-6"
+            >
+              <Button
+                variant="gold"
+                size="lg"
+                href="https://wa.me/917907199231?text=Hello%20Thaal%20Caters%2C%20I%27d%20like%20to%20enquire%20about%20your%20catering%20services."
+              >
+                Get Free Quote
+              </Button>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://www.facebook.com/share/185qnMtLyk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+                  aria-label="Facebook"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/thaal_caters/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+                  aria-label="Instagram"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                </a>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
