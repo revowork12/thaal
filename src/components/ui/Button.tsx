@@ -8,7 +8,7 @@ const MotionLink = motion(Link);
 
 interface ButtonProps {
   children: ReactNode;
-  variant?: "primary" | "outline" | "ghost" | "gold";
+  variant?: "primary" | "outline" | "ghost" | "gold" | "glass";
   size?: "xs" | "sm" | "md" | "lg";
   href?: string;
   onClick?: () => void;
@@ -43,6 +43,8 @@ export default function Button({
       "border-2 border-primary text-primary hover:bg-primary hover:text-white",
     ghost:
       "text-primary hover:bg-primary/5",
+    glass:
+      "bg-white/10 backdrop-blur-[12px] saturate-150 border border-white/20 text-primary hover:bg-primary/20 hover:border-primary hover:text-primary shadow-lg shadow-black/10",
   };
 
   const content = (

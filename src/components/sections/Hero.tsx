@@ -67,7 +67,7 @@ export default function Hero() {
             >
               Get Free Quote
             </Button>
-            <Button variant="outline" size="lg" href="/services">
+            <Button variant="glass" size="lg" href="/services">
               View Services
             </Button>
           </motion.div>

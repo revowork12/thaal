@@ -81,8 +81,8 @@ export default function TestimonialsCarousel() {
   const testimonial = testimonials[current];
 
   return (
-    <section className="py-24 bg-ivory">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="py-24 bg-ivory bg-grain">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <SectionHeading
           title="What Our Clients Say"
           subtitle="Trusted by hundreds of happy customers"

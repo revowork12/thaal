@@ -48,7 +48,7 @@ export default function Navbar() {
             <img
               src="/images/WhatsApp%20(1).webp"
               alt="Thaal Caters"
-              className="h-10 md:h-12 w-auto"
+              className="h-12 md:h-14 w-auto"
             />
           </Link>
 
@@ -69,7 +69,7 @@ export default function Navbar() {
               href="https://www.facebook.com/share/185qnMtLyk/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+              className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-gold hover:text-navy hover:border-gold transition-all duration-300"
               aria-label="Facebook"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -78,14 +78,14 @@ export default function Navbar() {
               href="https://www.instagram.com/thaal_caters/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+              className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-gold hover:text-navy hover:border-gold transition-all duration-300"
               aria-label="Instagram"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             </a>
             <a
               href="tel:7907199231"
-              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+              className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-gold hover:text-navy hover:border-gold transition-all duration-300"
               aria-label="Call us"
             >
               <Phone size={14} />
@@ -103,16 +103,25 @@ export default function Navbar() {
 
           <div className="flex lg:hidden items-center gap-1.5">
             <a
+              href="https://www.facebook.com/share/185qnMtLyk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-gold hover:text-navy hover:border-gold transition-all duration-300"
+              aria-label="Facebook"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a
               href="https://www.instagram.com/thaal_caters/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-gold hover:bg-gold/15 transition-all duration-300"
+              className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-gold hover:text-navy hover:border-gold transition-all duration-300"
               aria-label="Instagram"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             </a>
             <button
-              className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 transition-colors duration-300"
+              className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white/90 transition-all duration-300 hover:bg-gold hover:text-navy hover:border-gold"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >

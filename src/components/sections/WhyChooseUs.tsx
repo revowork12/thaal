@@ -69,8 +69,8 @@ const itemVariants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 bg-cream">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="py-24 bg-cream bg-grain">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <SectionHeading
           title="Why Choose Us"
           subtitle="What sets Thaal Caters apart"
